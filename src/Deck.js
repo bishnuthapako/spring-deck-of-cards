@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react'
 import axios from 'axios';
+import "./Deck.css"
 
 function Deck() {
 
@@ -44,29 +45,29 @@ function Deck() {
 
   return (
 
-    <div className="container">
+   <>
+     <button onClick={handleData} ref={ref} className='btn btn-secondary fw-bold mt-5 mb-5'>GIMME A CARD</button>
+     <div className="container">
     {
         deckData && (id <= deckData.cards.length)
         ? (
             <React.Fragment>
-                <button onClick={handleData} ref={ref} className='btn btn-lg btn-secondary mt-5 fw-bold'>
-                    GIMME A CARD
-                </button>
+              
+                <div className="mt-4">
                 {
-                  src.length > 0 ? src.map(s => 
-                    <div className="mt-4">
-                      <img className='mt-4' src={s} alt="Card" />
-                    </div>
+                  src.length > 0 ? src.map((s, index) => 
+                      <img key={index} className='mt-4 card-image' src={s} data_id={index} alt="Card" />
                   ) : ''
                 }
-                
+                </div>
             </React.Fragment>
         ) 
         : (
-            <h1 className='text-white fw-bold mt-5'>Error: no cards remaining!</h1>
+            <h1 className='text-white fw-bold'>Error: no cards remaining!</h1>
         )
     }
-</div>
+    </div>
+   </>
 
   )
 }

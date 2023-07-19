@@ -1,0 +1,45 @@
+/* Deck.css */
+
+.container {
+    position: relative;
+    width: 250px; /* Approximate width of a card, can be adjusted */
+}
+
+.card-image {
+    position: absolute;
+    top: 110px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.5s;
+    z-index: 1; /* By default, all cards will be at the same level */
+}
+
+.card-image[data-id="0"] {
+    transform: translate(-50%, -50%) rotate(-15deg);
+    z-index: 2; /* Card with index 0 will be on top of the default cards */
+}
+
+.card-image[data-id="1"] {
+    transform: translate(-50%, -50%) rotate(-10deg);
+    z-index: 3; /* Card with index 1 will be on top of card 0 */
+}
+
+.card-image[data-id="2"] {
+    transform: translate(-50%, -50%) rotate(-5deg);
+    z-index: 4;
+}
+
+.card-image[data-id="3"] {
+    transform: translate(-50%, -50%) rotate(5deg);
+    z-index: 5;
+}
+
+.card-image[data-id="4"] {
+    transform: translate(-50%, -50%) rotate(10deg);
+    z-index: 6;
+}
+
+.card-image[data-id="5"] {
+    transform: translate(-50%, -50%) rotate(15deg);
+    z-index: 7;
+}
