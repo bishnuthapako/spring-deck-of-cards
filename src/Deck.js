@@ -5,10 +5,8 @@ function Deck() {
 
     const [deckData, setDeckData] = useState(null)
     const [id, setId]=useState(0);
-    const [src, setSrc] = useState(null)
+    const [src, setSrc] = useState([])
     const ref = useRef(null)
-
-  console.log(src, 'src')
 
     const shuffle = (array) => {
       for (let i = array.length - 1; i > 0; i--) {
@@ -37,10 +35,10 @@ function Deck() {
     }, []);
    
   function handleData(){
-      setId((prev)=>prev + 1);
-    setSrc(deckData.cards[`${id}`].image)
-
-
+    setId((prev)=> prev + 1);
+    if (id < deckData.cards.length) {
+      setSrc([...src, deckData.cards[`${id}`].image])
+    }
   }
 
 
@@ -48,15 +46,20 @@ function Deck() {
 
     <div className="container">
     {
-        deckData && id < deckData.cards.length 
+        deckData && (id <= deckData.cards.length)
         ? (
             <React.Fragment>
                 <button onClick={handleData} ref={ref} className='btn btn-lg btn-secondary mt-5 fw-bold'>
                     GIMME A CARD
                 </button>
-                <div className="mt-4">
-                    <img className='mt-4' src={src} alt="Card" />
-                </div>
+                {
+                  src.length > 0 ? src.map(s => 
+                    <div className="mt-4">
+                      <img className='mt-4' src={s} alt="Card" />
+                    </div>
+                  ) : ''
+                }
+                
             </React.Fragment>
         ) 
         : (
