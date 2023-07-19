@@ -38,9 +38,6 @@ function Deck() {
    
   function handleData(){
       setId((prev)=>prev + 1);
-      if(id >= 6){
-        setId(0)
-      }
     setSrc(deckData.cards[`${id}`].image)
 
 
@@ -50,9 +47,8 @@ function Deck() {
   return (
 
     <div className="container">
-      <h3>{id}</h3>
     {
-        deckData && deckData.cards.length 
+        deckData && id < deckData.cards.length 
         ? (
             <React.Fragment>
                 <button onClick={handleData} ref={ref} className='btn btn-lg btn-secondary mt-5 fw-bold'>
